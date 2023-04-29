@@ -5,33 +5,34 @@ import React from "react";
 
 export default function Home() {
 
-  const [quoteResponse, setQuoteResponse] = useState({});
+  const [quoteData, setQuoteData] = useState(null);
 
   useEffect(()=>{
 
-    async function CallQuote() {
-      const response = await axios.get('https://api.api-ninjas.com/v1/quotes?category=', {
-        headers:{
-          'X-Api-Key': 'p+1UonYp3he379lGNG6akA==Ug9FpTFDQqg3PcUF'
-        }
-      })
-
-      setQuoteResponse(response);
+    async function getQuotesByCategory() {
+      try {
+        const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=`, {
+          headers: {
+            'X-Api-Key': 'p+1UonYp3he379lGNG6akA==Ug9FpTFDQqg3PcUF'
+          },
+          contentType: 'application/json'
+        });
+        console.log(response.data);
+        setQuoteData(response.data[0]);
+      } catch (error) {
+        console.error('Error:', error.response.data);
+      }
     }
 
-    CallQuote();
-    console.log(quoteResponse);
+    getQuotesByCategory();
 
   }, []);
 
 
 
   return (
-    <div>  
-      quoteResponse.quote ?
-        <Quote quoteResponse={quoteResponse} />
-      :
-        <div>Loading...</div>
-    </div>
+    <>
+        {quoteData && <Quote quotes={quoteData.quote} authors={quoteData.author}/>}
+    </>
   );
 }
