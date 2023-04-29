@@ -8,24 +8,32 @@ export default function Quote(props) {
     return(
         <StyledQuoteBox>
             <span>{quotes}</span>
-            <span>-{authors}</span>
+            <span>- {authors}</span>
         </StyledQuoteBox>
     );
 };
 
 const StyledQuoteBox = styled.div`
-    height: 600px;
-    width: 600px;
+    min-height: min-content;
+    width: 35rem;
+    border-radius: 0.4rem;
+    padding: 1rem 1.2rem;
     background-color: red;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
     span {
-        color: black;
+        color: white;
+        text-shadow: 0.1rem 0.1rem 0.2rem black;
         font-family: 'Arial', sans serif;
         font-size: 1.5rem;
         font-weight: bold;
-        text-align: center;
+        text-align: justify;
+        :last-of-type{
+            font-size: 2rem;
+            font-style: italic;
+        }
     }
 `;
