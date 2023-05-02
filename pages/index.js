@@ -1,38 +1,66 @@
-import Quote from "@/public/components/Quote";
+import Quote from "@/public/components/Quote/Quote";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
+import { BsTwitter } from "react-icons/bs";
 
 export default function Home() {
 
   const [quoteData, setQuoteData] = useState(null);
+  const [mainColor, setMainColor] = useState('000000');
+  const [requested, setRequested] = useState(false);
+  const [tweetURL, setTweetURL] = useState(null);
+
+
+  const tweetIntentURL = 'https://twitter.com/intent/tweet?hashtags=quote&text=';
+
+
+  async function getQuotesByCategory() {
+    try {
+      const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=`, {
+        headers: {
+          'X-Api-Key': 'p+1UonYp3he379lGNG6akA==Ug9FpTFDQqg3PcUF'
+        },
+        contentType: 'application/json'
+      });
+      console.log('0');
+      setQuoteData(response.data[0]);
+    } catch (error) {
+      console.error('Error:', error.response.data);
+    }
+  }
 
   useEffect(()=>{
 
-    async function getQuotesByCategory() {
-      try {
-        const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=`, {
-          headers: {
-            'X-Api-Key': 'p+1UonYp3he379lGNG6akA==Ug9FpTFDQqg3PcUF'
-          },
-          contentType: 'application/json'
-        });
-        console.log(response.data);
-        setQuoteData(response.data[0]);
-      } catch (error) {
-        console.error('Error:', error.response.data);
-      }
+    if(!requested){
+      getQuotesByCategory();
+      setRequested(true);
+      setTweetURL(tweetIntentURL);
+    };
+
+  }, [requested]);
+
+  const handleNewQuote = () => {
+    setRequested(false);
+    setMainColor(Math.floor(Math.random()*16777215).toString(16));
+    document.body.style.backgroundColor = "#" + mainColor;
+    const elements = document.querySelectorAll("*");
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.color = mainColor;
     }
-
-    getQuotesByCategory();
-
-  }, []);
-
-
+  }
 
   return (
-    <>
-        {quoteData && <Quote quotes={quoteData.quote} authors={quoteData.author}/>}
-    </>
+    <div className="wrapper_div">
+        {quoteData && <Quote quotes={quoteData.quote} authors={quoteData.author} color={mainColor} />}
+        <div className="buttons_div">
+          <a
+            href={tweetURL} className="twitter_button"
+            target="_blank"
+          ><BsTwitter/>
+          </a>
+          <button onClick={handleNewQuote}>New Quote</button>
+        </div>
+    </div>
   );
 }

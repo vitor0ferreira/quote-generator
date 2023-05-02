@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: ease 1s;
 }
 
 body {
@@ -11,5 +12,39 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background-color: red;
+}
+
+.buttons_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 35rem;
+}
+
+.buttons_div > a {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 6px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+button {
+  outline: none;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.85rem;
+  width: 9rem;
+  height: 4rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+button:hover{
+  cursor: pointer;
 }
