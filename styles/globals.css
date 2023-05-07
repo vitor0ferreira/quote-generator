@@ -19,7 +19,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   width: 35rem;
-  max-width: 90vw;
+  max-width: 80vw;
 }
 
 .buttons_div > a {

@@ -17,8 +17,10 @@ export default function Quote(props) {
 
 const StyledQuoteBox = styled.div`
     min-height: min-content;
+    height: max-content;
+    max-height: 80vh;
     width: 35rem;
-    max-width: 90vw;
+    max-width: 80vw;
     border-radius: 0.4rem;
     padding: 2.5rem 2rem;
     margin-bottom: 2rem;
