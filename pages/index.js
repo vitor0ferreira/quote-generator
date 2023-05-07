@@ -11,7 +11,6 @@ export default function Home() {
   const [requested, setRequested] = useState(false);
   const [tweetURL, setTweetURL] = useState(null);
 
-
   const tweetIntentURL = 'https://twitter.com/intent/tweet?hashtags=quote&text=';
 
 
@@ -28,26 +27,26 @@ export default function Home() {
     } catch (error) {
       console.error('Error:', error.response.data);
     }
+    setRequested(true);
   }
 
   useEffect(()=>{
 
     if(!requested){
       getQuotesByCategory();
-      setRequested(true);
       setTweetURL(tweetIntentURL);
+      setMainColor(Math.floor(Math.random()*16777215).toString(16));
+      document.body.style.backgroundColor = "#" + mainColor;
+      const elements = document.querySelectorAll("*");
+      for (let i = 0; i < elements.length; i++) {
+          elements[i].style.color = mainColor;
+      }
     };
 
   }, [requested]);
 
   const handleNewQuote = () => {
     setRequested(false);
-    setMainColor(Math.floor(Math.random()*16777215).toString(16));
-    document.body.style.backgroundColor = "#" + mainColor;
-    const elements = document.querySelectorAll("*");
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].style.color = mainColor;
-    }
   }
 
   return (
