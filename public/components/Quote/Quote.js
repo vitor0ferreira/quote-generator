@@ -17,24 +17,25 @@ export default function Quote(props) {
 
 const StyledQuoteBox = styled.div`
     min-height: min-content;
-    height: max-content;
-    max-height: 80vh;
-    width: 35rem;
-    max-width: 80vw;
+    height: auto;
+    max-height: 85vh;
+    width: 40rem;
+    max-width: 70vw;
     border-radius: 0.4rem;
     padding: 2.5rem 2rem;
     margin-bottom: 2rem;
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
     span {
         font-family: 'Arial', sans serif;
         font-size: 2rem;
         font-weight: bold;
-        text-align: center;
+        text-align: left;
+        white-space: break-word;
         :last-of-type{
             font-size: 1.6rem;
             font-style: italic;
@@ -42,4 +43,5 @@ const StyledQuoteBox = styled.div`
             align-self: flex-end;
         }
     }
+    overflow: auto;
 `;

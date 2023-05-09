@@ -24,6 +24,7 @@ export default function Home() {
       });
       console.log('0');
       setQuoteData(response.data[0]);
+      setTweetURL(tweetIntentURL + response.data[0].quote + '%20%20' + response.data[0].author);
     } catch (error) {
       console.error('Error:', error.response.data);
     }
@@ -34,7 +35,6 @@ export default function Home() {
 
     if(!requested){
       getQuotesByCategory();
-      setTweetURL(tweetIntentURL);
       setMainColor(Math.floor(Math.random()*16777215).toString(16));
       document.body.style.backgroundColor = "#" + mainColor;
       const elements = document.querySelectorAll("*");

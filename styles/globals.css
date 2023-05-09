@@ -14,12 +14,20 @@ body {
   justify-content: center;
 }
 
+.wrapper_div {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 95vh;
+  width: auto;
+  max-width: 95vw;
+}
+
 .buttons_div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 35rem;
-  max-width: 80vw;
+  width: auto;
 }
 
 .buttons_div > a {
