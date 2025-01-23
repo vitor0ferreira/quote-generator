@@ -18,7 +18,7 @@ export default function Home() {
     try {
       const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=`, {
         headers: {
-          'X-Api-Key': process.env.NINJA_API_KEY,
+          'X-Api-Key': process.env.NEXT_PUBLIC_NINJA_API_KEY,
         },
         contentType: 'application/json'
       });
