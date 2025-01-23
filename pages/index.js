@@ -10,6 +10,7 @@ export default function Home() {
   const [mainColor, setMainColor] = useState('000000');
   const [requested, setRequested] = useState(false);
   const [tweetURL, setTweetURL] = useState(null);
+  const api_key = process.env.NINJA_API_KEY;
 
   const tweetIntentURL = 'https://twitter.com/intent/tweet?hashtags=quote&text=';
 
@@ -18,7 +19,7 @@ export default function Home() {
     try {
       const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=`, {
         headers: {
-          'X-Api-Key': 'p+1UonYp3he379lGNG6akA==Ug9FpTFDQqg3PcUF'
+          'X-Api-Key': api_key
         },
         contentType: 'application/json'
       });
